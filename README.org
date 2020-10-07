@@ -1,0 +1,4 @@
+#+TITLE: ngeo
+
+=ngeo= is not an NGO. =ngeo= is a simple demonstrative tool that works as a text
+classifier for basic use cases.
