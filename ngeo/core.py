@@ -19,7 +19,7 @@ def cv_train(estimator, X, y):
     pos_label = sorted(set(y))[0]
     print(f":: Choosing {pos_label} as positive")
 
-    print(f":: Training using {n_splits} cross validation splits")
+    print(f":: Training using {n_splits} cross validation splits\n")
     scorer = make_scorer(partial(classification_report_with_f1, pos_label=pos_label))
     scores = cross_validate(estimator, X, y, cv=cv, scoring=scorer)
 

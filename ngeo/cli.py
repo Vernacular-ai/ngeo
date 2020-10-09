@@ -17,8 +17,9 @@ from docopt import docopt
 
 from ngeo.core import cv_train
 from ngeo.features import NgeoFeaturizer
-from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 from sklearn.pipeline import make_pipeline
+from sklearn.svm import SVC
 
 
 def main():
@@ -28,13 +29,13 @@ def main():
         df = pd.read_csv(args["--csv-file"])
         df = df[["text", "class-true"]].dropna()
 
-        print(f"Found {len(df)} training examples")
+        print(f":: Found {len(df)} training examples")
 
         X = df["text"].tolist()
         y = df["class-true"].tolist()
 
         f = NgeoFeaturizer()
-        clf = LogisticRegression()
+        clf = SVC(kernel="linear")
         pipeline = make_pipeline(f, clf)
 
         cv_train(pipeline, X, y)
@@ -63,6 +64,8 @@ def main():
     elif args["evaluate"]:
         df = pd.read_csv(args["--csv-file"])
         df = df[["class-true", "class-pred"]].dropna()
+
+        print(f":: Evaluating on {len(df)} data points\n")
 
         print(classification_report(df["class-true"].tolist(), df["class-pred"].tolist()))
     else:
