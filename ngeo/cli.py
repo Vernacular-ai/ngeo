@@ -15,9 +15,9 @@ import pickle
 import pandas as pd
 from docopt import docopt
 
+from ngeo.core import cv_train
 from ngeo.features import NgeoFeaturizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
 from sklearn.pipeline import make_pipeline
 
 
@@ -36,9 +36,11 @@ def main():
         f = NgeoFeaturizer()
         clf = LogisticRegression()
         pipeline = make_pipeline(f, clf)
-        pipeline.fit(X, y)
 
-        print("Training done.")
+        cv_train(pipeline, X, y)
+
+        # Training on full
+        pipeline.fit(X, y)
 
         with open(args["--output-model"], "wb") as fp:
             pickle.dump(pipeline, fp)
