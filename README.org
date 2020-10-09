@@ -8,25 +8,23 @@ The general workflow is like the following:
 1. You have a list of items to filter.
 2. You make a CSV that looks like the following:
 
-|----------------+------------+------------+------------|
-| text           | class-true | class-pred | score-pred |
-|----------------+------------+------------+------------|
-| some text here | this-ones  |            |            |
-|                |            |            |            |
+   |----------------+------------+------------+------------|
+   | text           | class-true | class-pred | score-pred |
+   |----------------+------------+------------+------------|
+   | some text here | this-ones  |            |            |
+   |                |            |            |            |
 
 3. You tag some data using an office suite by putting in =class-true=.
 4. Train a model using the following:
-
-#+begin_src shell
-  ngeo fit --csv-file=./data.csv --output-model=./model.pkl
-#+end_src
-
+   #+begin_src shell
+     ngeo fit --csv-file=./data.csv --output-model=./model.pkl
+   #+end_src
+   
 5. Populate labels in =class-pred= column along with =score-pred= as predicted by
    the model.
-
-#+begin_src shell
-  ngeo predict --csv-file=./data.csv --model=./model.pkl
-#+end_src
+   #+begin_src shell
+     ngeo predict --csv-file=./data.csv --model=./model.pkl
+   #+end_src
 
 6. Go back in the interface and re-tag, based on confidence scores maybe, and
    repeat till you have a good amount of filtered text.
