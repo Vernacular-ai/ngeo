@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ngeo"
-version = "0.1.0"
+version = "0.2.0"
 description = "ngeo is not an NGO"
 authors = ["Abhinav Tushar <abhinav@lepisma.xyz>"]
 
